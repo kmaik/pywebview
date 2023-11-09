@@ -114,7 +114,8 @@ class Window:
         http_port: int | None = None,
         server: type[http.ServerType] | None = None,
         server_args: http.ServerArgs = {},
-        screen: Screen = None
+        screen: Screen = None,
+        profile: str | None = None
     ) -> None:
         self.uid = uid
         self._title = title

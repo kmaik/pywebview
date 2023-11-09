@@ -44,6 +44,14 @@ class EdgeChrome:
         props.AdditionalBrowserArguments = '--disable-features=ElasticOverscroll --allow-file-access-from-files'
         self.web_view.CreationProperties = props
 
+        if window.profile:
+            self.env = CoreWebView2Environment.CreateAsync().Result
+            self.options = self.env.CreateCoreWebView2ControllerOptions()
+            self.options.ProfileName = "MyProfile"
+            self.options.IsInPrivateModeEnabled = False
+            # var controller = await env.CreateCoreWebView2ControllerAsync(hwnd.Handle, options);
+            self.web_view.EnsureCoreWebView2Async(self.env, self.options)
+
         form.Controls.Add(self.web_view)
 
         self.js_results = {}
